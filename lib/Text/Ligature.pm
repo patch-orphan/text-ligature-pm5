@@ -29,11 +29,11 @@ This document describes Text::Ligature version 0.01.
     # returns: oﬄoading ﬂoral oﬃces reﬁnes eﬀectiveness
 
     from_ligature('oﬄoading ﬂoral oﬃces reﬁnes eﬀectiveness');
-    # returns: offloading floral offices refines effectiveness';
+    # returns: offloading floral offices refines effectiveness
 
 =head1 DESCRIPTION
 
-Replaces sequences of characters with correspending typographic ligatures.
+Replaces sequences of characters with corresponding typographic ligatures.
 
     Ligature    Non-ligature
     ﬀ           ff
