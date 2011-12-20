@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 use parent 'Exporter';
+use Carp;
 
 our $VERSION     = '0.01';
 our @EXPORT_OK   = qw( to_ligature from_ligature );
@@ -25,6 +26,11 @@ my %chars_for = reverse %lig_for;
 sub to_ligature {
     my ($text) = @_;
 
+    if (@_ != 1) {
+        carp 'to_ligature() expects one argument';
+        return;
+    }
+
     # longest token matching
     for my $chars (sort { length $b <=> length $a } keys %lig_for) {
         $text =~ s/$chars/$lig_for{$chars}/g;
@@ -35,6 +41,11 @@ sub to_ligature {
 
 sub from_ligature {
     my ($text) = @_;
+
+    if (@_ != 1) {
+        carp 'from_ligature() expects one argument';
+        return;
+    }
 
     for my $lig (keys %chars_for) {
         $text =~ s/$lig/$chars_for{$lig}/g;
