@@ -7,7 +7,7 @@ use utf8;
 use parent 'Exporter';
 use Carp;
 
-our $VERSION     = '0.01';
+our $VERSION     = '0.02';
 our @EXPORT_OK   = qw< to_ligatures from_ligatures to_ligature from_ligature >;
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
@@ -72,7 +72,7 @@ Text::Ligature - Replace sequences of characters with typographic ligatures
 
 =head1 VERSION
 
-This document describes Text::Ligature version 0.01.
+This document describes Text::Ligature version 0.02.
 
 =head1 SYNOPSIS
 
@@ -88,8 +88,6 @@ This document describes Text::Ligature version 0.01.
 
 Replaces sequences of characters with corresponding typographic ligatures.
 
-Defaults:
-
     Characters  Ligature
     ff          ﬀ
     fi          ﬁ
@@ -97,11 +95,17 @@ Defaults:
     ffi         ﬃ
     ffl         ﬄ
 
+=begin comment
+
+TODO: Support additional specified characters.
+
 Additional:
 
     Characters  Ligature
     ft          ﬅ
     st          ﬆ
+
+=end comment
 
 This is an early release.  Specifying the ligatures to replace will be
 supported in a future version.
