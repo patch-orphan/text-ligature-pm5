@@ -11,6 +11,8 @@ our $VERSION     = '0.01';
 our @EXPORT_OK   = qw( to_ligature from_ligature );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
+my @defaults = qw< ff fi fl ffi ffl >;
+
 my %lig_for = (
     ff  => 'ﬀ',
     fi  => 'ﬁ',
@@ -32,7 +34,7 @@ sub to_ligature {
     }
 
     # longest token matching
-    for my $chars (sort { length $b <=> length $a } keys %lig_for) {
+    for my $chars (sort { length $b <=> length $a } @defaults) {
         $text =~ s/$chars/$lig_for{$chars}/g;
     }
 
@@ -82,14 +84,20 @@ This document describes Text::Ligature version 0.01.
 
 Replaces sequences of characters with corresponding typographic ligatures.
 
-    Ligature    Non-ligature
-    ﬀ           ff
-    ﬁ           fi
-    ﬂ           fl
-    ﬃ           ffi
-    ﬄ           ffl
-    ﬅ           ft
-    ﬆ           st
+Defaults:
+
+    Characters  Ligature
+    ff          ﬀ
+    fi          ﬁ
+    fl          ﬂ
+    ffi         ﬃ
+    ffl         ﬄ
+
+Additional:
+
+    Characters  Ligature
+    ft          ﬅ
+    st          ﬆ
 
 This is an early release.  Specifying the ligatures to replace will be
 supported in a future version.
