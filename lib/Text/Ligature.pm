@@ -8,8 +8,12 @@ use parent 'Exporter';
 use Carp;
 
 our $VERSION     = '0.01';
-our @EXPORT_OK   = qw( to_ligature from_ligature );
+our @EXPORT_OK   = qw< to_ligatures from_ligatures to_ligature from_ligature >;
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
+
+# TODO: remove to_ligature/from_ligature in next release
+*to_ligature   = \&to_ligatures;
+*from_ligature = \&from_ligatures;
 
 my @defaults = qw< ff fi fl ffi ffl >;
 
@@ -25,11 +29,11 @@ my %lig_for = (
 
 my %chars_for = reverse %lig_for;
 
-sub to_ligature {
+sub to_ligatures {
     my ($text) = @_;
 
     if (@_ != 1) {
-        carp 'to_ligature() expects one argument';
+        carp 'to_ligatures() expects one argument';
         return;
     }
 
@@ -41,11 +45,11 @@ sub to_ligature {
     return $text;
 }
 
-sub from_ligature {
+sub from_ligatures {
     my ($text) = @_;
 
     if (@_ != 1) {
-        carp 'from_ligature() expects one argument';
+        carp 'from_ligatures() expects one argument';
         return;
     }
 
@@ -74,10 +78,10 @@ This document describes Text::Ligature version 0.01.
 
     use Text::Ligature qw( :all );
 
-    to_ligature('offloading floral offices refines effectiveness');
+    to_ligatures('offloading floral offices refines effectiveness');
     # returns: oﬄoading ﬂoral oﬃces reﬁnes eﬀectiveness
 
-    from_ligature('oﬄoading ﬂoral oﬃces reﬁnes eﬀectiveness');
+    from_ligatures('oﬄoading ﬂoral oﬃces reﬁnes eﬀectiveness');
     # returns: offloading floral offices refines effectiveness
 
 =head1 DESCRIPTION
